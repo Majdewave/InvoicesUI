@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {invoice} from 'src/app/models/invoices.model';
+import {invoice, invoiceForResponse} from 'src/app/models/invoices.model';
+import { InvoicesService } from '../Services/invoices.service';
 
 @Component({
   selector: 'app-invoice-list',
@@ -7,7 +8,22 @@ import {invoice} from 'src/app/models/invoices.model';
   styleUrls: ['./invoice-list.component.css']
 })
 export class InvoiceListComponent implements OnInit {
-    date = new Date();
+  
+  addInvoiceRequest: invoice = {
+    id:'',
+    amount: 0,
+    status: '',
+   params:[]
+  };
+  addInvoiceResponse: invoiceForResponse = {
+    id:'',
+    amount: 0,
+    status: '',
+    Date: new Date
+    
+  };
+  InvoicesResponse: invoiceForResponse[] = []
+
   Invoices: invoice[] = [
 
 
@@ -30,10 +46,25 @@ export class InvoiceListComponent implements OnInit {
    
   ];
 
-  constructor(){}
+  constructor(private invoiceService:InvoicesService){}
 
   ngOnInit(): void {
-      this.Invoices.push()
+     // this.Invoices.push()
+     this.addInvoiceRequest.id ="";
+     this.invoiceService.GetAllInvoices(this.addInvoiceRequest,this.addInvoiceResponse)
+     .subscribe((value: any)=>{
+      this.InvoicesResponse = value.params.invoices;
+      this.InvoicesResponse= this.InvoicesResponse;
+     });
+      //  next:(invoice)=>{
+      //    console.log(invoice);
+      //    this.Invoices = this.Invoices;
+      //  },
+      //  error:(Response) =>{
+      //   console.log(this.Invoices); 
+      
+      //  }
+   //  })
   }
 
 }

@@ -1,6 +1,14 @@
 export interface invoice{
+    params: any [];
     id: string;
-    amount: number;
     status: string;
-    Date: Date;
+    amount: number;
+
+}
+export interface invoiceForResponse{
+    id: string;
+    status: string;
+    amount: number;
+    Date: Date
+
 }

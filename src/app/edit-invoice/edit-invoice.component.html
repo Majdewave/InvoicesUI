@@ -1,0 +1,31 @@
+<div class="container my-5">
+    <h1 class="mb-3">Edit  Invoice</h1>
+
+        <form #form="ngForm" (ngSubmit)="updateInvoice()">
+            <div class="row">
+                <div class="col-6">
+                    <div class="mb-3">
+                        <label for="Id" class="form-label">Id</label>
+                        <input type="text" class="form-control" id="Id" [(ngModel)]="invoiceDetails.id"
+                        name="Id" readonly> 
+                      </div>
+                      <div class="mb-3">
+                        <label for="Amount" class="form-label">Amount</label>
+                        <input type="number" class="form-control" id="Amount" [(ngModel)]="invoiceDetails.amount"
+                        name="Amount">
+                      </div>
+                      <div class="mb-3">
+                          <label for="Status" class="form-label">Status</label>
+                          <input type="text" class="form-control" id="Status" [(ngModel)]="invoiceDetails.status"
+                          name="Status" >
+                        </div>
+ 
+
+                      <div id="emailHelp" class="form-text my-2">We'll add the CreatedDate Auto.</div>
+          
+                      <button type="submit" class="btn btn-outline-primary">Save</button>
+                </div>
+            </div>
+            
+          </form>
+</div>
